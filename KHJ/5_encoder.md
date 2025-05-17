@@ -49,22 +49,22 @@
 * **M 방식 (Frequency Measurement Method):** 일정한 시간 간격($\Delta t$) 동안 발생한 펄스의 개수($\Delta P$)를 측정하여 속도를 계산합니다. 이 방식은 고속 회전 시에 유리합니다.
 
     회전 속도 (RPM)는 다음과 같이 계산할 수 있습니다.
-    $$ \text{RPM} = \frac{\Delta P}{\text{PPR} \times \text{체배 수}} \times \frac{60}{\Delta t} $$
+    $$\text{RPM} = \frac{\Delta P}{\text{PPR} \times \text{체배 수}} \times \frac{60}{\Delta t}$$
     여기서 $\Delta t$의 단위는 초(s)입니다.
 
     예를 들어, 1000 PPR 엔코더를 4체배 방식으로 사용하고, 0.1초 동안 500개의 펄스가 감지되었다면 RPM은 다음과 같습니다.
-    $$ \text{RPM} = \frac{500}{1000 \times 4} \times \frac{60}{0.1} = \frac{500}{4000} \times 600 = 0.125 \times 600 = 75 \text{ RPM} $$
+    $$\text{RPM} = \frac{500}{1000 \times 4} \times \frac{60}{0.1} = \frac{500}{4000} \times 600 = 0.125 \times 600 = 75 \text{ RPM}$$
 
     마이크로컨트롤러 등에서 일정 주기 타이머 인터럽트를 활용하여 $\Delta t$ 동안의 펄스 수를 카운트하는 방식으로 구현할 수 있습니다.
 
 * **T 방식 (Period Measurement Method):** 연속하는 두 펄스 사이의 시간 간격($\Delta T$)을 측정하여 속도를 계산합니다. 이 방식은 저속 회전 시에 유리합니다.
 
     회전 속도 (RPM)는 다음과 같이 계산할 수 있습니다.
-    $$ \text{RPM} = \frac{1}{\Delta T \times \text{PPR} \times \text{체배 수}} \times 60 $$
+    $$\text{RPM} = \frac{1}{\Delta T \times \text{PPR} \times \text{체배 수}} \times 60$$
     여기서 $\Delta T$의 단위는 초(s)이며, 한 펄스당 걸린 시간입니다.
 
     예를 들어, 1000 PPR 엔코더를 4체배 방식으로 사용하고, 한 펄스를 감지하는 데 0.001초가 걸렸다면 RPM은 다음과 같습니다.
-    $$ \text{RPM} = \frac{1}{0.001 \times 1000 \times 4} \times 60 = \frac{1}{4} \times 60 = 0.25 \times 60 = 15 \text{ RPM} $$
+    $$\text{RPM} = \frac{1}{0.001 \times 1000 \times 4} \times 60 = \frac{1}{4} \times 60 = 0.25 \times 60 = 15 \text{ RPM}$$
 
     마이크로컨트롤러 등에서 외부 인터럽트와 타이머/카운터를 활용하여 펄스 간의 시간 간격을 측정하는 방식으로 구현할 수 있습니다.
 
@@ -75,15 +75,15 @@
 로터리 엔코더의 펄스 수를 이용하여 직선 이동 거리를 계산하려면, 모터 샤프트에 연결된 바퀴의 둘레를 알아야 합니다.
 
 이동 거리 ($D$)는 다음과 같이 계산할 수 있습니다.
-$$ D = \text{펄스 총 개수} \times \text{펄스당 이동 거리} $$
+$$D = \text{펄스 총 개수} \times \text{펄스당 이동 거리}$$
 
 여기서 '펄스당 이동 거리'는 바퀴의 둘레를 1회전당 펄스 수(PPR x 체배 수)로 나눈 값입니다. 바퀴의 반지름을 $r$이라고 하면 둘레는 $2\pi r$입니다.
 
 따라서 이동 거리는 다음과 같습니다.
-$$ D = \text{펄스 총 개수} \times \frac{2 \pi r}{\text{PPR} \times \text{체배 수}} $$
+$$D = \text{펄스 총 개수} \times \frac{2 \pi r}{\text{PPR} \times \text{체배 수}}$$
 
 예를 들어, 반지름이 5cm인 바퀴가 달린 로봇에 1000 PPR 엔코더를 4체배 방식으로 사용하여 총 10000개의 펄스를 감지했다면, 이동 거리는 다음과 같습니다.
-$$ D = 10000 \times \frac{2 \pi \times 5 \text{ cm}}{1000 \times 4} = 10000 \times \frac{10 \pi \text{ cm}}{4000} = 10000 \times \frac{\pi}{400} \text{ cm} \approx 10000 \times 0.00785 \text{ cm} = 78.5 \text{ cm} $$
+$$D = 10000 \times \frac{2 \pi \times 5 \text{ cm}}{1000 \times 4} = 10000 \times \frac{10 \pi \text{ cm}}{4000} = 10000 \times \frac{\pi}{400} \text{ cm} \approx 10000 \times 0.00785 \text{ cm} = 78.5 \text{ cm}$$
 
 ## 5.5. 엔코더 데이터와 실제 주행 결과와의 차이가 발생하는 이유 및 보정 방법
 
