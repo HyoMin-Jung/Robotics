@@ -50,7 +50,7 @@
         C --> D[출력]
         D --> F(측정 센서)
         F --> E
-        E -- "- 오차" --> B
+        E -- "\- 오차" --> B
     ```
 
     * **제어 시스템의 구성 요소(Components of Control System)**:
